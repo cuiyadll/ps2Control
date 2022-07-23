@@ -59,7 +59,7 @@ function 停止 () {
 }
 basic.showIcon(IconNames.House)
 TM1650.showNumber(0)
-for (let index = 0; index < 4; index++) {
+for (let index = 0; index < 500; index++) {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
     150,
@@ -87,6 +87,7 @@ basic.forever(function () {
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Select) == 1) {
         舵机转动(0)
     } else {
+        TM1650.showNumber(1)
         停止()
         makerobo.MotorRun(makerobo.Motors.Centre, 0)
     }
