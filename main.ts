@@ -60,11 +60,16 @@ function 停止 () {
 basic.showIcon(IconNames.House)
 TM1650.showNumber(0)
 for (let index = 0; index < 4; index++) {
-    makerobo.MotorRunDual(makerobo.Motors.Left, 150, makerobo.Motors.Right, 150)
+    makerobo.MotorRunDual(
+    makerobo.Motors.Left,
+    150,
+    makerobo.Motors.Right,
+    150
+    )
 }
 makerobo.MotorStopAll()
 basic.showIcon(IconNames.Happy)
-//舵机归位
+// 舵机归位
 舵机转动(0)
 basic.forever(function () {
     if (ps2controller.button_pressed(ps2controller.PS2Button.Up) == 1) {
