@@ -16,14 +16,13 @@ def 停止():
     makerobo.motor_run_dual(makerobo.Motors.LEFT, 0, makerobo.Motors.RIGHT, 0)
 basic.show_icon(IconNames.HOUSE)
 TM1650.show_number(0)
+舵机转动(-20)
 for index in range(500):
     makerobo.motor_run_dual(makerobo.Motors.LEFT, 150, makerobo.Motors.RIGHT, 150)
 for index2 in range(500):
     makerobo.motor_run_dual(makerobo.Motors.LEFT, -150, makerobo.Motors.RIGHT, -150)
 makerobo.motor_stop_all()
 舵机转动(20)
-舵机转动(0)
-舵机转动(-20)
 basic.show_icon(IconNames.HAPPY)
 # 舵机归位
 舵机转动(0)
