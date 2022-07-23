@@ -59,6 +59,7 @@ function 停止 () {
 }
 basic.showIcon(IconNames.House)
 TM1650.showNumber(0)
+舵机转动(-20)
 for (let index = 0; index < 500; index++) {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
@@ -67,7 +68,16 @@ for (let index = 0; index < 500; index++) {
     150
     )
 }
+for (let index = 0; index < 500; index++) {
+    makerobo.MotorRunDual(
+    makerobo.Motors.Left,
+    -150,
+    makerobo.Motors.Right,
+    -150
+    )
+}
 makerobo.MotorStopAll()
+舵机转动(20)
 basic.showIcon(IconNames.Happy)
 // 舵机归位
 舵机转动(0)
@@ -81,9 +91,9 @@ basic.forever(function () {
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Right) == 1) {
         右转()
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Triangle) == 1) {
-        舵机转动(20)
+        舵机转动(50)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Square) == 1) {
-        舵机转动(-20)
+        舵机转动(-50)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Select) == 1) {
         舵机转动(0)
     } else {

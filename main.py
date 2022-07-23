@@ -16,9 +16,14 @@ def 停止():
     makerobo.motor_run_dual(makerobo.Motors.LEFT, 0, makerobo.Motors.RIGHT, 0)
 basic.show_icon(IconNames.HOUSE)
 TM1650.show_number(0)
-for index in range(4):
+for index in range(500):
     makerobo.motor_run_dual(makerobo.Motors.LEFT, 150, makerobo.Motors.RIGHT, 150)
+for index2 in range(500):
+    makerobo.motor_run_dual(makerobo.Motors.LEFT, -150, makerobo.Motors.RIGHT, -150)
 makerobo.motor_stop_all()
+舵机转动(20)
+舵机转动(0)
+舵机转动(-20)
 basic.show_icon(IconNames.HAPPY)
 # 舵机归位
 舵机转动(0)
@@ -33,12 +38,13 @@ def on_forever():
     elif ps2controller.button_pressed(ps2controller.PS2Button.RIGHT) == 1:
         右转()
     elif ps2controller.button_pressed(ps2controller.PS2Button.TRIANGLE) == 1:
-        舵机转动(20)
+        舵机转动(50)
     elif ps2controller.button_pressed(ps2controller.PS2Button.SQUARE) == 1:
-        舵机转动(-20)
+        舵机转动(-50)
     elif ps2controller.button_pressed(ps2controller.PS2Button.SELECT) == 1:
         舵机转动(0)
     else:
+        TM1650.show_number(1)
         停止()
         makerobo.motor_run(makerobo.Motors.CENTRE, 0)
 basic.forever(on_forever)
