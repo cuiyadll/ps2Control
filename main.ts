@@ -97,11 +97,32 @@ basic.forever(function () {
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Select) == 1) {
         舵机转动(0)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Circle) == 1) {
-        basic.showIcon(IconNames.Square)
+        basic.showLeds(`
+            . # # . .
+            # . . # .
+            # . . # .
+            # . . # .
+            . # # . .
+            `)
         原地右转()
-        basic.pause(2000)
-    } else if (false) {
-    	
+        basic.pause(5000)
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.Cross) == 1) {
+        basic.showIcon(IconNames.No)
+        原地左转()
+        basic.pause(5000)
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.L2) == 1) {
+        左转()
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.R2) == 1) {
+        右转()
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.Start) == 1) {
+        舵机转动(90)
+        basic.pause(500)
+        舵机转动(-90)
+        basic.pause(500)
+        舵机转动(0)
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.Analog_Right) == 1) {
+        前进()
+        makerobo.MotorRun(makerobo.Motors.Centre, 255)
     } else {
         TM1650.showNumber(1)
         停止()
