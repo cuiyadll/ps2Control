@@ -96,6 +96,12 @@ basic.forever(function () {
         舵机转动(-50)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Select) == 1) {
         舵机转动(0)
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.Circle) == 1) {
+        basic.showIcon(IconNames.Square)
+        原地右转()
+        basic.pause(2000)
+    } else if (false) {
+    	
     } else {
         TM1650.showNumber(1)
         停止()
