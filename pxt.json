@@ -1,5 +1,5 @@
 {
-    "name": "教程1PS2手柄控制",
+    "name": "教程1：PS2手柄控制",
     "description": "",
     "dependencies": {
         "core": "*",
