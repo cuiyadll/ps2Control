@@ -1,9 +1,9 @@
 function 高速前进 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
-    255,
+    250,
     makerobo.Motors.Right,
-    255
+    250
     )
 }
 function 原地右转 () {
@@ -52,9 +52,9 @@ function 高速原地左转 () {
 function 高速后退 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
-    -255,
+    -250,
     makerobo.Motors.Right,
-    -255
+    -250
     )
 }
 function 高速右转 () {
@@ -68,9 +68,9 @@ function 高速右转 () {
 function 后退 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
-    -150,
+    -100,
     makerobo.Motors.Right,
-    -150
+    -100
     )
 }
 function 高速左转 () {
@@ -92,9 +92,9 @@ function 高速原地右转 () {
 function 前进 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
-    150,
+    100,
     makerobo.Motors.Right,
-    150
+    100
     )
 }
 function 停止 () {
@@ -106,14 +106,14 @@ function 停止 () {
     )
 }
 basic.showIcon(IconNames.House)
-TM1650.showNumber(0)
+TM1650.showNumber(5)
 舵机转动(-20)
 for (let index = 0; index < 500; index++) {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
-    150,
+    255,
     makerobo.Motors.Right,
-    150
+    255
     )
 }
 for (let index = 0; index < 500; index++) {
@@ -143,12 +143,13 @@ basic.forever(function () {
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Square) == 1) {
         舵机转动(-50)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Select) == 1) {
+        // 舵机回正
         舵机转动(0)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Circle) == 1) {
         basic.showLeds(`
             . # # . .
             # . . # .
-            # . . # .
+            # . . . .
             # . . # .
             . # # . .
             `)
@@ -165,6 +166,13 @@ basic.forever(function () {
         basic.pause(500)
         舵机转动(0)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Up) == 1) {
+        basic.showLeds(`
+            . . # . .
+            . . # . .
+            . . # . .
+            . . # . .
+            . . # . .
+            `)
         高速前进()
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Down) == 1) {
         高速后退()
