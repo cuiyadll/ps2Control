@@ -7,7 +7,9 @@ function 高速前进 () {
     )
 }
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-	
+    TM1650.off()
+    music.playTone(330, music.beat(BeatFraction.Whole))
+    basic.showIcon(IconNames.No)
 })
 function 原地右转 () {
     makerobo.MotorRunDual(
@@ -76,6 +78,11 @@ function 高速后退 () {
     -250
     )
 }
+input.onButtonPressed(Button.A, function () {
+    TM1650.showNumber(44)
+    music.playTone(330, music.beat(BeatFraction.Whole))
+    basic.showIcon(IconNames.Yes)
+})
 function 高速右转 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
@@ -124,6 +131,11 @@ function 慢速左转 () {
     20
     )
 }
+input.onButtonPressed(Button.B, function () {
+    TM1650.on()
+    music.playTone(330, music.beat(BeatFraction.Whole))
+    basic.showIcon(IconNames.Square)
+})
 function 慢速后退 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
@@ -141,8 +153,8 @@ function 停止 () {
     )
 }
 music.playTone(262, music.beat(BeatFraction.Whole))
-basic.showIcon(IconNames.House)
 TM1650.showNumber(0)
+basic.showIcon(IconNames.House)
 舵机转动(-20)
 for (let index = 0; index < 500; index++) {
     makerobo.MotorRunDual(
@@ -162,7 +174,7 @@ for (let index = 0; index < 500; index++) {
 }
 makerobo.MotorStopAll()
 舵机转动(20)
-basic.showIcon(IconNames.Happy)
+basic.showIcon(IconNames.EigthNote)
 // 舵机归位
 舵机转动(0)
 basic.forever(function () {
