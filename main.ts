@@ -6,12 +6,31 @@ function 高速前进 () {
     250
     )
 }
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+	
+})
 function 原地右转 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
     150,
     makerobo.Motors.Right,
     -150
+    )
+}
+function 慢速右转 () {
+    makerobo.MotorRunDual(
+    makerobo.Motors.Left,
+    20,
+    makerobo.Motors.Right,
+    0
+    )
+}
+function 慢速前进 () {
+    makerobo.MotorRunDual(
+    makerobo.Motors.Left,
+    20,
+    makerobo.Motors.Right,
+    20
     )
 }
 function 原地左转 () {
@@ -68,9 +87,9 @@ function 高速右转 () {
 function 后退 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
-    -100,
+    -255,
     makerobo.Motors.Right,
-    -100
+    -255
     )
 }
 function 高速左转 () {
@@ -92,9 +111,25 @@ function 高速原地右转 () {
 function 前进 () {
     makerobo.MotorRunDual(
     makerobo.Motors.Left,
-    100,
+    255,
     makerobo.Motors.Right,
-    100
+    255
+    )
+}
+function 慢速左转 () {
+    makerobo.MotorRunDual(
+    makerobo.Motors.Left,
+    0,
+    makerobo.Motors.Right,
+    20
+    )
+}
+function 慢速后退 () {
+    makerobo.MotorRunDual(
+    makerobo.Motors.Left,
+    -20,
+    makerobo.Motors.Right,
+    -20
     )
 }
 function 停止 () {
@@ -105,8 +140,9 @@ function 停止 () {
     0
     )
 }
+music.playTone(262, music.beat(BeatFraction.Whole))
 basic.showIcon(IconNames.House)
-TM1650.showNumber(5)
+TM1650.showNumber(0)
 舵机转动(-20)
 for (let index = 0; index < 500; index++) {
     makerobo.MotorRunDual(
@@ -161,29 +197,37 @@ basic.forever(function () {
         basic.pause(5000)
     } else if (ps2controller.button_pressed(ps2controller.PS2Button.Start) == 1) {
         舵机转动(90)
-        basic.pause(500)
+        basic.pause(350)
         舵机转动(-90)
-        basic.pause(500)
+        basic.pause(350)
         舵机转动(0)
-    } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Up) == 1) {
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Up) == 1) {
         basic.showLeds(`
             . . # . .
-            . . # . .
+            # . # . .
             . . # . .
             . . # . .
             . . # . .
             `)
         高速前进()
-    } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Down) == 1) {
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Down) == 1) {
         高速后退()
-    } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Left) == 1) {
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Left) == 1) {
         高速左转()
-    } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Right) == 1) {
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Right) == 1) {
         高速右转()
-    } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Cross) == 1) {
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Cross) == 1) {
         高速原地左转()
-    } else if (ps2controller.button_pressed(ps2controller.PS2Button.R1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Circle) == 1) {
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L1) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Circle) == 1) {
         高速原地右转()
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L2) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Up) == 1) {
+        慢速前进()
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L2) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Down) == 1) {
+        慢速后退()
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L2) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Right) == 1) {
+        慢速右转()
+    } else if (ps2controller.button_pressed(ps2controller.PS2Button.L2) == 1 && ps2controller.button_pressed(ps2controller.PS2Button.Left) == 1) {
+        慢速左转()
     } else {
         TM1650.showNumber(1)
         停止()
